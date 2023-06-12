@@ -1,19 +1,27 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import Card from './Card';
-import img_lasanha from '../img/lasanha.jpg';
+import receitas from './Recipes';
 
 export default function HomeScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Tela Principal</Text>
-      <Card
-        title='Lasanha'
-        text='Iae poha'
-        link='https://pokerandomteam.netlify.app'
-        img={img_lasanha}
-      />
-        <Button title="Ir para Detalhes" onPress={() => navigation.navigate('Detail')} />
+      <View style={styles.container}>
+      <Text style={styles.title}>Tela Principal</Text>
+        <FlatList
+          data={receitas}
+          keyExtractor={(item) => item.id}
+          renderItem={({item}) => (
+            <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
+                <Card
+                title={item.nome}
+                text='Iae poha'
+                img={item.img}
+                navigation={'Detail'}           
+              />
+            </TouchableOpacity>
+          )}
+        />
+        
     </View>
   );
 }
@@ -24,5 +32,9 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
+    },
+    title:{
+        fontSize: 15,
+        fontWeight: 'bold',
     }
   });
