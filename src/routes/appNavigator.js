@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen   from '../components/Home';
-import DetailScreen from '../components/Details';
+import HomeScreen   from '../pages/Home';
+import DetailScreen from '../pages/Details';
 // import Card from '../components/Card';
 //import { StyleSheet } from 'react-native';
 
