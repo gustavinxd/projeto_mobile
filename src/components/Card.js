@@ -2,7 +2,7 @@ import react from "react";
 import { Text, View, Image, StyleSheet } from 'react-native';
 import star from '../img/star.png'
 
-function Card({ title, text, img }) {
+function MainCard({ title, text, img }) {
     return (
         <View style={styles.container}>
             <Image style={styles.imagem}
@@ -14,19 +14,48 @@ function Card({ title, text, img }) {
                     <Text style={[styles.pTitle]}>{ title }</Text>
                 </View>
                 <View style={styles.cardcol}>
-                    <Text style={styles.p}>{ text }</Text>
-                    <Image source={star} style={styles.estrela}></Image>
-                    <Image source={star} style={styles.estrela}></Image>
-                    <Image source={star} style={styles.estrela}></Image>
-                    <Image source={star} style={styles.estrela}></Image>
-                    <Image source={star} style={styles.estrela}></Image>
+                    <View style={styles.cardcolLeft}>
+                        <Text style={styles.p}>{ text }</Text>
+                        <Image source={star} style={styles.estrela}></Image>
+                        <Image source={star} style={styles.estrela}></Image>
+                        <Image source={star} style={styles.estrela}></Image>
+                        <Image source={star} style={styles.estrela}></Image>
+                        <Image source={star} style={styles.estrela}></Image>
+                    </View>
                 </View>
             </View>
 
         </View>
     );
 }
-export default Card;
+
+function SubCard({ title, text, img }) {
+    return (
+        <View style={styles.container}>
+            <Image style={styles.imagem}
+            source= { img }
+            />
+
+            <View style={styles.cardbody}>
+                <View style={styles.cardcol}>
+                    <Text style={[styles.pTitle]}>{ title }</Text>
+                </View>
+                <View style={styles.cardcol}>
+                    <View style={styles.cardcolLeft}>
+                        <Text style={styles.p}>{ text }</Text>
+                        <Image source={star} style={styles.estrela}></Image>
+                        <Image source={star} style={styles.estrela}></Image>
+                        <Image source={star} style={styles.estrela}></Image>
+                        <Image source={star} style={styles.estrela}></Image>
+                        <Image source={star} style={styles.estrela}></Image>
+                    </View>
+                </View>
+            </View>
+
+        </View>
+    );
+}
+export {MainCard, SubCard};
 
 const styles = StyleSheet.create({
     container:{
@@ -34,6 +63,7 @@ const styles = StyleSheet.create({
         width: 370,
         marginBottom: 20,
         borderRadius: 5,
+        elevation: 2
     },
 
     p: {
@@ -53,7 +83,8 @@ const styles = StyleSheet.create({
     imagem:{
         width: 370,
         height: 200,
-        borderRadius: 5
+        borderTopRightRadius: 5,
+        borderTopLeftRadius: 5,
     },
 
     link: {
@@ -69,12 +100,16 @@ const styles = StyleSheet.create({
     },
     cardcol:{
         flex: 1,
-        flexDirection: 'row',
-        alignItems: 'flex-start'
+        flexDirection: 'row'
 
     },
     estrela:{
-        width: 24,
-        height: 24,
+        width: 20,
+        height: 20,
+    },
+    cardcolLeft:{
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent:'flex-end'
     }
 });

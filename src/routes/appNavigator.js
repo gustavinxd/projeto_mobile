@@ -1,9 +1,8 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen   from '../pages/Home';
 import DetailScreen from '../pages/Details';
-// import Card from '../components/Card';
-//import { StyleSheet } from 'react-native';
 
 const Stack = createStackNavigator();
 
