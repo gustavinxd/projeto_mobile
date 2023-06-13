@@ -1,42 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
-import {MainCard, SubCard} from '../components/Card';
-import {especiais, receitas} from '../components/Recipes';
+import Card from '../components/Card';
+import especiais from '../components/Recipes';
 
 export default function HomeScreen({ navigation }) {
 
-  const [data, setReceitas] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const handleItemPress = (item) => {
+      navigation.navigate('Detail', { item } )
+    };
 
-   useEffect(() =>{
-    const loadReceitas = async () => {
-      setReceitas(especiais);
-      setLoading(false);
-    }
-
-    loadReceitas();
-
-   },[]);
-
-  if(loading){
-    return(
-      <View style={styles.loading}>
-        <ActivityIndicator color="#121212" size={85}/>
-      </View>
-    );
-
-  }else{
     return (
         <View style={styles.container}>
         
           <FlatList
             style ={styles.lista}
-            ListHeaderComponent={<Text style={styles.title}>Especial do Dia</Text>}
-            data={data}
+            ListHeaderComponent={<Text style={styles.title}>Receitas do dia</Text>}
+            data={especiais}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => (
-              <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
-                  <MainCard
+              <TouchableOpacity onPress={handleItemPress(item)}>
+                  <Card
                   title={item.nome}
                   text={item.nota}
                   img={item.img}           
@@ -47,8 +30,6 @@ export default function HomeScreen({ navigation }) {
                     
       </View>
     );
-
-  }
   
 }
 

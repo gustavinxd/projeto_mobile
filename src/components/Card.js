@@ -2,7 +2,7 @@ import react from "react";
 import { Text, View, Image, StyleSheet } from 'react-native';
 import star from '../img/star.png'
 
-function MainCard({ title, text, img }) {
+function Card({ title, text, img }) {
     return (
         <View style={styles.container}>
             <Image style={styles.imagem}
@@ -29,33 +29,7 @@ function MainCard({ title, text, img }) {
     );
 }
 
-function SubCard({ title, text, img }) {
-    return (
-        <View style={styles.container}>
-            <Image style={styles.imagem}
-            source= { img }
-            />
-
-            <View style={styles.cardbody}>
-                <View style={styles.cardcol}>
-                    <Text style={[styles.pTitle]}>{ title }</Text>
-                </View>
-                <View style={styles.cardcol}>
-                    <View style={styles.cardcolLeft}>
-                        <Text style={styles.p}>{ text }</Text>
-                        <Image source={star} style={styles.estrela}></Image>
-                        <Image source={star} style={styles.estrela}></Image>
-                        <Image source={star} style={styles.estrela}></Image>
-                        <Image source={star} style={styles.estrela}></Image>
-                        <Image source={star} style={styles.estrela}></Image>
-                    </View>
-                </View>
-            </View>
-
-        </View>
-    );
-}
-export {MainCard, SubCard};
+export default Card;
 
 const styles = StyleSheet.create({
     container:{
