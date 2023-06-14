@@ -1,17 +1,25 @@
 import React from 'react';
 import { View, Text, Button, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import Card from '../components/Card';
+import HeaderReceita from '../components/HeaderDetalhe';
+import { CardDetailIngredientes } from '../components/Cards';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function DetailScreen({ route }) {
-
-  const {item}  = route.params;
-
-  console.log(item);
+  const {recipe}  = route?.params;
+  // const recipesIng = recipe.ingredientes;
+  // console.log(recipesIng);
+  console.log(recipe.ingredientes);
 
   return (
 
     <View style={styles.container}>
-      <Text style={styles.title}>a</Text>            
+      <HeaderReceita title={recipe.nome} img={recipe.img}/>
+      <ScrollView style={styles.scroll}>
+
+        <CardDetailIngredientes 
+        ingredientes={recipe.ingredientes.sections}/>
+
+      </ScrollView>
     </View>
   );
 }
@@ -20,6 +28,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    alignItems: 'center'
+    
+  },
+  scroll: {
+    flex: 1,
+    paddingHorizontal: '5%'
     
   },
   lista: {

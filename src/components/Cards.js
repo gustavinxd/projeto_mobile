@@ -1,8 +1,8 @@
-import react from "react";
-import { Text, View, Image, StyleSheet } from 'react-native';
+import React from "react";
+import { Text, View, Image, StyleSheet, Dimensions } from 'react-native';
 import star from '../img/star.png'
 
-function Card({ title, text, img }) {
+function CardHome({ title, text, img }) {
     return (
         <View style={styles.container}>
             <Image style={styles.imagem}
@@ -11,7 +11,7 @@ function Card({ title, text, img }) {
 
             <View style={styles.cardbody}>
                 <View style={styles.cardcol}>
-                    <Text style={[styles.pTitle]}>{ title }</Text>
+                    <Text style={styles.pTitle}>{ title }</Text>
                 </View>
                 <View style={styles.cardcol}>
                     <View style={styles.cardcolLeft}>
@@ -29,7 +29,23 @@ function Card({ title, text, img }) {
     );
 }
 
-export default Card;
+function CardDetailIngredientes({ ingredientes }) {
+    return (
+        <View style={styles.containerCdI}>
+            {ingredientes.map((section, index) => (
+                <View style={styles.bodyCdI} key={index}>
+                <Text style={styles.titleIng}>{section.title}</Text>
+                    <Text>{section.data}</Text>
+                </View>
+            ))}
+        </View>
+    );
+}
+
+export { CardHome, CardDetailIngredientes };
+
+const larguraTela = Dimensions.get('window').width;
+const alturaTela = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container:{
@@ -40,18 +56,9 @@ const styles = StyleSheet.create({
         elevation: 2
     },
 
-    p: {
-
-    },
-
     pTitle:{
         fontWeight: 'bold',
         fontSize: 16
-    },
-
-    imgContainer:{
-        alignItems:'center',
-        justifyContent: 'center',
     },
 
     imagem:{
@@ -59,11 +66,6 @@ const styles = StyleSheet.create({
         height: 200,
         borderTopRightRadius: 5,
         borderTopLeftRadius: 5,
-    },
-
-    link: {
-        color: '#00f',
-        textDecorationLine: 'underline'
     },
     cardbody:{
         flex: 1,
@@ -85,5 +87,22 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent:'flex-end'
-    }
+    },
+    containerCdI:{
+        backgroundColor: '#f1f1f1',
+        width: larguraTela * 0.9,
+        marginBottom: 20,
+        borderRadius: 5,
+        elevation: 2
+    },
+    bodyCdI:{
+        padding: '5%'
+    },
+    titleIng:{
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'center',
+        marginBottom: '3%'
+    },
+
 });

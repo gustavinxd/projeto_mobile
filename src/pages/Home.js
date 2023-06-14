@@ -1,13 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
-import Card from '../components/Card';
+import {CardHome, } from '../components/Cards';
 import especiais from '../components/Recipes';
 
 export default function HomeScreen({ navigation }) {
-
-  const handleItemPress = (item) => {
-      navigation.navigate('Detail', { item } )
-    };
 
     return (
         <View style={styles.container}>
@@ -18,8 +14,8 @@ export default function HomeScreen({ navigation }) {
             data={especiais}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => (
-              <TouchableOpacity onPress={handleItemPress(item)}>
-                  <Card
+              <TouchableOpacity onPress={() => navigation.navigate('Detail', { recipe: item } )}>
+                  <CardHome
                   title={item.nome}
                   text={item.nota}
                   img={item.img}           
