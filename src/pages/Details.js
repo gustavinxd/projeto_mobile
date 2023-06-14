@@ -1,26 +1,31 @@
 import React from 'react';
 import { View, Text, Button, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import HeaderReceita from '../components/HeaderDetalhe';
-import { CardDetailIngredientes } from '../components/Cards';
+import { CardDetailIngredientes, CardDetailIngredientesHeader} from '../components/Cards';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export default function DetailScreen({ route }) {
   const {recipe}  = route?.params;
   // const recipesIng = recipe.ingredientes;
   // console.log(recipesIng);
-  console.log(recipe.ingredientes);
+  //console.log(recipe.ingredientes);
 
   return (
 
-    <View style={styles.container}>
-      <HeaderReceita title={recipe.nome} img={recipe.img}/>
       <ScrollView style={styles.scroll}>
+        <View style={styles.container}>
+          <HeaderReceita title={recipe.nome} img={recipe.img}/>
 
-        <CardDetailIngredientes 
-        ingredientes={recipe.ingredientes.sections}/>
+          <CardDetailIngredientesHeader ingTempo={recipe.tempo} ingDif={recipe.dificuldade}/>
 
+          <CardDetailIngredientes 
+          ingredientes={recipe.ingredientes.sections}/>
+
+          <CardDetailIngredientes 
+          ingredientes={recipe.preparo.sections}/>
+
+        </View>
       </ScrollView>
-    </View>
   );
 }
 
@@ -32,9 +37,7 @@ const styles = StyleSheet.create({
     
   },
   scroll: {
-    flex: 1,
-    paddingHorizontal: '5%'
-    
+   
   },
   lista: {
     flex: 1,

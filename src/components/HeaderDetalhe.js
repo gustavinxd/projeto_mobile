@@ -20,7 +20,7 @@ const alturaTela = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: '#f1f1f1',
+        backgroundColor: '#FF6200',
         elevation: 2,
         marginBottom: '5%'
     },
@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 24,
         textAlign: 'center',
-        padding: 5
+        padding: 5,
+        color: '#fff'
     },
 
     imagem:{
